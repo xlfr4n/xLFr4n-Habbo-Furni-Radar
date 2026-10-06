@@ -4,27 +4,21 @@
 
 ## 🇪🇸 Español
 
-**Habbo Furni Radar** es la parte de **xlfr4n** dedicada a monitorización y automatización alrededor de Habbo Collectibles.
+Habbo Furni Radar pertenece al laboratorio xLFr4n de monitorización y automatización alrededor de Habbo Collectibles.
 
-La estética puede ser juguetona; el criterio no: fuentes públicas, deduplicación, trazabilidad y alertas útiles.
+La estética puede ser juguetona; la ingeniería no: fuentes públicas, deduplicación, trazabilidad, reintentos controlados y alertas útiles.
 
-**Identidad mostrada:** <code>xLFr4n</code> · **GitHub handle:** <code>xlfr4n</code> · Habbo · automation · monitoring · collectibles
+## 🇺🇸 English
 
-## 🇬🇧 English
+Habbo Furni Radar is the xLFr4n monitoring and automation layer around Habbo Collectibles.
 
-**Habbo Furni Radar** is the **xlfr4n** side focused on monitoring and automation around Habbo Collectibles.
+The visual side can be playful; the engineering standard remains serious: public sources, deduplication, traceability, bounded retries and useful alerts.
 
-The visual side can be playful; the engineering standard stays serious: public sources, deduplication, traceability and useful alerts.
+**Display:** ⚡ xLFr4n  
+**Handle:** xlfr4n
 
-**Display identity:** <code>xLFr4n</code> · **GitHub handle:** <code>xlfr4n</code> · Habbo · automation · monitoring · collectibles
+## 🔗 Ecosystem
 
----
+Follow the shared [xLFr4n ecosystem standard](https://github.com/xlfr4n/xLFr4n/blob/main/ECOSYSTEM.md).
 
-<p align="center"><strong>⚡ xLFr4n</strong> · Watch the signal · Automate the boring</p>
-
-
-## Canonical ecosystem standard
-
-This project follows the shared [xLFr4n ecosystem standard](https://github.com/xlfr4n/xLFr4n/blob/main/ECOSYSTEM.md).
-
-> **⚡ xLFr4n — One signature. Different laboratories.**
+> **⚡ xLFr4n · Detect → Enrich → Verify → Alert**
