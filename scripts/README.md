@@ -1,17 +1,15 @@
-# ⚡ xlfr4n // Scripts
+# ⚡ xLFr4n // Furni Radar Scripts
 
 ## 🇪🇸 Español
 
-Scripts auxiliares de **Habbo Furni Radar** para pruebas y verificación del radar.
+Helpers auxiliares para pruebas, verificación y mantenimiento de Habbo Furni Radar.
 
-**Firma:** `xlfr4n` · monitorización · automatización · Habbo Collectibles
+La automatización principal vive en el workflow y `radar.py`; estos scripts deben permanecer pequeños y trazables.
 
-## 🇬🇧 English
+## 🇺🇸 English
 
-Helper scripts for **Habbo Furni Radar**, focused on radar tests and verification.
+Helper scripts for testing, verification and maintenance around Habbo Furni Radar.
 
-**Signature:** `xlfr4n` · monitoring · automation · Habbo Collectibles
+The main automation lives in the workflow and `radar.py`; helper scripts should remain small and traceable.
 
----
-
-<p align="center"><strong>⚡ xlfr4n</strong> · Watch the signal</p>
+**⚡ xLFr4n · Watch the signal**
