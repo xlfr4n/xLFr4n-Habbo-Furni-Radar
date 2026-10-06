@@ -1,129 +1,101 @@
 # 📡 xLFr4n // Habbo Furni Radar
 
-> 🏠 **Detector automático de nuevos Habbo Collectibles → Discord**  
-> 🏠 **Automatic new Habbo Collectibles detector → Discord**
+> **Spot the drop. Capture the data. Keep the signal.**
 
+<p align="center">
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub-Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Habbo](https://img.shields.io/badge/Habbo-Collectibles-111827?style=for-the-badge)
+</p>
 
 ## 🇪🇸 Español
 
 ### 🎯 Qué hace
 
-Habbo Furni Radar consulta la **Shop API pública de Habbo Collectibles** y detecta nuevos `productCode`. Cuando aparece un Collectible nuevo, recopila información disponible y publica un embed individual en Discord.
+Habbo Furni Radar observa la **Shop API pública de Habbo Collectibles**, detecta nuevos `productCode` y publica un embed individual en Discord por cada Collectible nuevo detectado.
 
-La detección usa la Shop oficial como fuente de lanzamiento y utiliza furnidata/precios como enriquecimiento.
+La Shop se utiliza como fuente de lanzamiento y furnidata, precios y conversión de moneda se usan como enriquecimiento cuando están disponibles.
 
 ### 📡 Fuentes
 
-- 🏪 Shop: `collectibles.habbo.com/api/shop/items/`
-- 💹 Precios: `collectibles.habbo.com/api/shop/prices/`
-- 🪑 Furnidata: `habbo.es/gamedata/furnidata_xml/1`
-- 💱 Conversión ETH: CoinGecko
+| Source | Role |
+|---|---|
+| Shop API | detección de nuevos items |
+| Prices API | datos de mercado disponibles |
+| Habbo furnidata | enriquecimiento técnico |
+| CoinGecko | conversión ETH |
 
-### ✨ Información enriquecida
+### ♻️ Flujo
 
-Cuando las fuentes la proporcionan, el embed puede incluir nombre, rareza, colección, score, coste, supply, timestamps, descripción, datos técnicos, precio ETH/USD/EUR, enlace de mercado e imagen oficial.
-
-### ♻️ Automatización
-
-```text
+~~~text
 GitHub Actions
-      ↓
-cada ~5 min
-      ↓
-Shop API
-      ↓
-¿nuevo productCode?
-      ↓
-Furnidata + precios
-      ↓
-Discord
-      ↓
-state/known_shop_items.json
-```
+     ↓
+scheduled poll
+     ↓
+Habbo Shop API
+     ↓
+new productCode?
+   ↙       ↘
+ no         yes
+ ↓           ↓
+state     enrich
+             ↓
+          Discord
+~~~
 
-- 🧠 Bootstrap inicial sin spam histórico.
-- ♻️ Deduplicación por `productCode`.
-- 🛡️ Reintentos HTTP/429/5xx.
-- ❤️ Heartbeat para reducir riesgo de inactividad de workflows programados.
-- 🧪 Workflow de prueba independiente.
+El estado conocido se mantiene en `state/known_shop_items.json` para evitar duplicados y spam histórico.
 
-### 🔐 Seguridad
+### 🇺🇸 English
 
-❌ No requiere wallet, private key, seed phrase, VPS ni servidor propio.  
-🔑 El webhook de Discord debe almacenarse únicamente como **GitHub Actions Secret**.
+Habbo Furni Radar watches the **public Habbo Collectibles Shop API**, detects new `productCode` values and publishes one Discord embed for each newly observed Collectible.
 
-### 🧪 Desarrollo
-
-```bash
-python -m unittest discover -s tests -v
-python radar.py --dry-run
-```
+The Shop API is the launch signal; furnidata, pricing and ETH conversion endpoints provide enrichment when available.
 
 ---
 
-## 🇬🇧 English
+# 🛠️ Local development
 
-### 🎯 What it does
-
-Habbo Furni Radar watches the public **Habbo Collectibles Shop API**, detects new `productCode` values and posts one Discord embed per newly detected Collectible.
-
-The Shop API is treated as the launch source, while furnidata and pricing endpoints enrich the alert.
-
-### 📡 Sources
-
-Shop API, pricing API, Habbo furnidata and CoinGecko ETH conversion data.
-
-### ✨ Enrichment
-
-Depending on source availability, alerts can contain name, rarity, collection, score, cost, supply, exact timestamps, description, technical metadata, ETH/USD/EUR market information, market link and official artwork.
-
-### ♻️ Automation
-
-GitHub Actions performs scheduled polling, persistent deduplication, network retries, optional enrichment and Discord publication.
-
-### 🔐 Security
-
-No wallet, private key, seed phrase, VPS or always-on computer is required. The Discord webhook belongs exclusively in GitHub Actions Secrets.
-
-### 🧪 Development
-
-```bash
+~~~bash
 python -m unittest discover -s tests -v
 python radar.py --dry-run
-```
+~~~
 
-## 📌 Status
+### Automation model
 
-🟢 **Automated / Automatizado**  
-📡 **Public-source driven / Basado en fuentes públicas**  
-🌍 **Documentation / Documentación:** ES + EN
+- scheduled GitHub Actions polling;
+- persistent deduplication;
+- HTTP retry handling including rate limiting and transient 5xx responses;
+- enrichment only when source data is available;
+- initial bootstrap without replaying the whole historical catalog;
+- optional heartbeat/testing workflow support.
 
 ---
 
-## ⚡ xlfr4n // Signature
+# 🔐 Security
 
-<p align="center">
-  <a href="./BRAND.md">🧩 Project identity / Identidad del proyecto</a> · <a href="https://github.com/xlfr4n">⚡ xlfr4n</a>
-  <br><sub>Build it. Understand it. Automate it. Document it. · Hazlo. Entiéndelo. Automatízalo. Documéntalo.</sub>
-</p>
+🇪🇸 No necesita wallet, private key, seed phrase, VPS ni servidor permanente. El webhook de Discord debe guardarse únicamente como **GitHub Actions Secret**.
 
-## 🧭 xLFr4n repository standard
+🇺🇸 No wallet, private key, seed phrase, VPS or always-on server is required. Store the Discord webhook only as a **GitHub Actions Secret**.
 
-**Display signature:** ⚡ xLFr4n · **GitHub handle:** `xlfr4n`
+---
 
-Documentation entry points:
-- `BRAND.md` — identity and communication style.
-- `CONTRIBUTING.md` — contribution workflow.
-- `SECURITY.md` — secrets and reporting.
-- `CODE_OF_CONDUCT.md` — collaboration baseline.
-- `LICENSE` — project license.
+# 📊 Data policy
 
-### Signal policy
+The radar describes what the configured public sources actually returned. Missing values remain missing; temporary failures are not converted into facts; inferred values are not silently presented as source values.
 
-Alerts should describe what the public sources actually returned. Do not turn missing data, temporary failures or inferred values into facts.
+Alerts may include name, rarity, collection, score, cost, supply, timestamps, description, technical metadata, ETH/USD/EUR information, market link and official artwork when sources provide them.
 
-> **📡 xLFr4n · Detect → Enrich → Verify → Alert**
+---
 
+# 📚 Documentation
+
+- `BRAND.md` — project identity
+- `scripts/README.md` — helper scripts
+- `SECURITY.md` — security boundaries
+- `CONTRIBUTING.md` — contribution workflow
+
+---
+
+# ⚡ xLFr4n
+
+<div align="center"><strong>Detect → Enrich → Verify → Alert</strong><br><sub>⚡ xLFr4n · Public sources · Useful signal</sub></div>
