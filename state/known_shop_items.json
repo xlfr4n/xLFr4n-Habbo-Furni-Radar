@@ -1915,6 +1915,11 @@
       "name": "Habbo Action Figure Box",
       "release": "2026-03-18T09:45:03.061Z"
     },
+    "nft_h26_ingredientshelf": {
+      "first_seen_at": "2026-10-14T15:18:12.698284Z",
+      "name": "Spell Ingredient Shelf",
+      "release": "2026-10-14T09:53:00.000Z"
+    },
     "nft_h26_joystick": {
       "name": "Oversized Joystick Decoration",
       "release": "2026-01-14T10:00:18.889Z"
@@ -1963,6 +1968,11 @@
       "name": "Sandman Gnome",
       "release": "2026-02-06T11:00:00.000Z"
     },
+    "nft_h26_spellingredients": {
+      "first_seen_at": "2026-10-14T15:18:12.698284Z",
+      "name": "Spell Ingredients",
+      "release": "2026-10-14T09:53:00.000Z"
+    },
     "nft_h26_sunlounger": {
       "name": "Jungle Sunlounger",
       "release": "2026-06-03T10:00:30.125Z"
@@ -1988,8 +1998,8 @@
       "release": "2024-11-06T10:00:16.485Z"
     }
   },
-  "last_api_sha256": "64ee89670032312129e439f37e20a6544a2fdbf68f189063e751d897a612a202",
-  "last_successful_check": "2026-10-07T11:55:14.691954Z",
+  "last_api_sha256": "f1a86dcf6109a21fab20097753fe2dff1affd0e32816794e5469f1edbb1cb4ca",
+  "last_successful_check": "2026-10-14T15:18:21.840411Z",
   "schema_version": 2,
   "source_url": "https://collectibles.habbo.com/api/shop/items/?walletAddress="
 }
