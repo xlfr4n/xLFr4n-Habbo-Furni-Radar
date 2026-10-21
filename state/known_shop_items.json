@@ -1985,6 +1985,16 @@
       "name": "Trippy Patch",
       "release": "2026-09-24T08:29:00.000Z"
     },
+    "nft_h26_witchchair": {
+      "first_seen_at": "2026-10-21T11:10:50.538099Z",
+      "name": "Witch's Chair",
+      "release": "2026-10-21T09:37:00.000Z"
+    },
+    "nft_h26_witchworkstation": {
+      "first_seen_at": "2026-10-21T11:10:50.538099Z",
+      "name": "Witch's Work Station",
+      "release": "2026-10-21T09:37:00.000Z"
+    },
     "nft_u23_sonft_sofa": {
       "name": "Brain Sofa",
       "release": "2023-06-14T07:00:52.213Z"
@@ -1998,8 +2008,8 @@
       "release": "2024-11-06T10:00:16.485Z"
     }
   },
-  "last_api_sha256": "f1a86dcf6109a21fab20097753fe2dff1affd0e32816794e5469f1edbb1cb4ca",
-  "last_successful_check": "2026-10-14T15:18:21.840411Z",
+  "last_api_sha256": "0d94c3bf86342e93b706ac564f6d36395c5e91e92006ffc90644fc7c78a9f7ce",
+  "last_successful_check": "2026-10-21T11:11:01.839951Z",
   "schema_version": 2,
   "source_url": "https://collectibles.habbo.com/api/shop/items/?walletAddress="
 }
