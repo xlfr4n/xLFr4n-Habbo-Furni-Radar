@@ -3,16 +3,16 @@
 > **Spot the drop. Capture the data. Keep the signal.**
 
 <p align="center">
-![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub-Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
-![Habbo](https://img.shields.io/badge/Habbo-Collectibles-111827?style=for-the-badge)
+  <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.12">
+  <img src="https://img.shields.io/badge/GitHub-Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions">
+  <img src="https://img.shields.io/badge/Habbo-Collectibles-111827?style=for-the-badge" alt="Habbo Collectibles">
 </p>
 
 ## 🇪🇸 Español
 
 ### 🎯 Qué hace
 
-Habbo Furni Radar observa la **Shop API pública de Habbo Collectibles**, detecta nuevos `productCode` y publica un embed individual en Discord por cada Collectible nuevo detectado.
+Habbo Furni Radar consulta la **Shop API pública de Habbo Collectibles**, compara los `productCode` con el estado guardado y avisa en Discord cuando encuentra uno nuevo. El estado inicial se registra sin mandar avisos históricos.
 
 La Shop se utiliza como fuente de lanzamiento y furnidata, precios y conversión de moneda se usan como enriquecimiento cuando están disponibles.
 
@@ -60,6 +60,8 @@ python -m unittest discover -s tests -v
 python radar.py --dry-run
 ~~~
 
+`--dry-run` muestra qué Collectibles nuevos detectaría, sin publicar en Discord ni modificar el estado persistente. En el primer arranque, una simulación tampoco inicializa el catálogo: así puedes probar sin consumir los avisos que debería emitir una ejecución real.
+
 ### Automation model
 
 - scheduled GitHub Actions polling;
@@ -81,7 +83,7 @@ python radar.py --dry-run
 
 # 📊 Data policy
 
-The radar describes what the configured public sources actually returned. Missing values remain missing; temporary failures are not converted into facts; inferred values are not silently presented as source values.
+El radar refleja lo que devolvieron las fuentes consultadas. Si un dato falta o una fuente falla, no debe tratarse como un hecho confirmado. Los precios son referencias de la consulta, no una tasación ni una garantía de venta.
 
 Alerts may include name, rarity, collection, score, cost, supply, timestamps, description, technical metadata, ETH/USD/EUR information, market link and official artwork when sources provide them.
 
