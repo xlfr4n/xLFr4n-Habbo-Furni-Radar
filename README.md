@@ -7,7 +7,7 @@
 <p>
   <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.12">
   <img src="https://img.shields.io/badge/GitHub-Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions">
-  <img src="https://img.shields.io/badge/Habbo-Collectibles-252A34?style=for-the-badge" alt="Habbo Collectibles">
+  <img src="https://img.shields.io/badge/Habbo-Collectibles-FF3344?style=for-the-badge&labelColor=111318" alt="Habbo Collectibles">
 </p>
 
 </div>
@@ -106,7 +106,7 @@ Los avisos pueden incluir nombre, rareza, colección, puntuación, coste, oferta
 <div align="center">
 
 **Detectar → Enriquecer → Verificar → Avisar**  
-<sub>⚡ xLFr4n · Fuentes públicas · Señal útil</sub>
+<sub>⚡ xLFr4n · Cyber-red / charcoal · Fuentes públicas · Señal útil</sub>
 
 </div>
 
