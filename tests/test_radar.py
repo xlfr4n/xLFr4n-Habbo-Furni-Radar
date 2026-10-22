@@ -86,6 +86,13 @@ class RadarTests(unittest.TestCase):
             "Oculto",
         )
 
+    def test_dry_run_does_not_bootstrap_empty_state(self):
+        with tempfile.TemporaryDirectory() as directory:
+            state_path = Path(directory) / "missing-state.json"
+            with patch("radar.fetch_shop_items", return_value=([SAMPLE_ITEM], "digest")):
+                self.assertEqual(run(state_path, webhook_url="", dry_run=True), 0)
+            self.assertFalse(state_path.exists())
+
     def test_dry_run_does_not_consume_new_items(self):
         with tempfile.TemporaryDirectory() as directory:
             state_path = Path(directory) / "known.json"
