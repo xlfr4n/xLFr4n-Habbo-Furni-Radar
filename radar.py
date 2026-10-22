@@ -617,7 +617,13 @@ def run(state_path: Path, webhook_url: str, dry_run: bool = False) -> int:
     known = state.get("known", {})
 
     if not known:
-        bootstrap_state(current, state_path, digest)
+        if dry_run:
+            print(
+                f"Dry-run: el catálogo inicial contiene {len(current)} Collectibles. "
+                "No se inicializa ni modifica el estado persistente."
+            )
+        else:
+            bootstrap_state(current, state_path, digest)
         return 0
 
     current_time = now_utc()
