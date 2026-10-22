@@ -1,103 +1,144 @@
-# 📡 xLFr4n // Habbo Furni Radar
+<div align="center">
 
-> **Spot the drop. Capture the data. Keep the signal.**
+# ⚡ xLFr4n / Habbo Furni Radar
 
-<p align="center">
+**Detectar novedades, contrastar datos y avisar solo cuando hay una señal nueva.**
+
+<p>
   <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.12">
   <img src="https://img.shields.io/badge/GitHub-Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions">
-  <img src="https://img.shields.io/badge/Habbo-Collectibles-111827?style=for-the-badge" alt="Habbo Collectibles">
+  <img src="https://img.shields.io/badge/Habbo-Collectibles-252A34?style=for-the-badge" alt="Habbo Collectibles">
 </p>
 
-## 🇪🇸 Español
+</div>
 
-### 🎯 Qué hace
+---
 
-Habbo Furni Radar consulta la **Shop API pública de Habbo Collectibles**, compara los `productCode` con el estado guardado y avisa en Discord cuando encuentra uno nuevo. El estado inicial se registra sin mandar avisos históricos.
+## Qué hace
 
-La Shop se utiliza como fuente de lanzamiento y furnidata, precios y conversión de moneda se usan como enriquecimiento cuando están disponibles.
+**Habbo Furni Radar** consulta la Shop API pública de Habbo Collectibles, compara los códigos `productCode` con el estado guardado y envía un aviso a Discord cuando detecta un artículo nuevo.
 
-### 📡 Fuentes
+La primera ejecución registra el catálogo inicial sin convertir todo el histórico en una avalancha de notificaciones. El radar conserva los elementos conocidos para evitar avisos duplicados.
 
-| Source | Role |
-|---|---|
-| Shop API | detección de nuevos items |
-| Prices API | datos de mercado disponibles |
-| Habbo furnidata | enriquecimiento técnico |
-| CoinGecko | conversión ETH |
+La Shop API es la señal principal de detección. Los datos de furnidata, precios y conversión de moneda se utilizan como enriquecimiento cuando las fuentes los ofrecen.
 
-### ♻️ Flujo
+## Fuentes de datos
 
-~~~text
+| Fuente | Uso |
+| --- | --- |
+| **Shop API** | Detección de nuevos artículos. |
+| **Prices API** | Datos de mercado disponibles. |
+| **Habbo furnidata** | Información técnica complementaria. |
+| **CoinGecko** | Conversión de ETH cuando está disponible. |
+
+Cada fuente puede fallar, cambiar o devolver información incompleta. El radar no debe interpretar un dato ausente como un valor confirmado.
+
+## Flujo
+
+```text
 GitHub Actions
-     ↓
-scheduled poll
-     ↓
-Habbo Shop API
-     ↓
-new productCode?
-   ↙       ↘
- no         yes
- ↓           ↓
-state     enrich
-             ↓
-          Discord
-~~~
+      |
+      v
+Consulta programada
+      |
+      v
+Habbo Shop API ------> Estado conocido
+      |                      |
+      v                      v
+¿productCode nuevo? -----> Deduplicación
+      |
+      +-- No: continuar
+      |
+      +-- Sí: enriquecer datos
+                    |
+                    v
+                Aviso Discord
+```
 
-El estado conocido se mantiene en `state/known_shop_items.json` para evitar duplicados y spam histórico.
+El estado persistente se guarda en `state/known_shop_items.json`.
 
-### 🇺🇸 English
+## Probar en local
 
-Habbo Furni Radar watches the **public Habbo Collectibles Shop API**, detects new `productCode` values and publishes one Discord embed for each newly observed Collectible.
+Necesitas Python 3.12 y las dependencias del proyecto instaladas.
 
-The Shop API is the launch signal; furnidata, pricing and ETH conversion endpoints provide enrichment when available.
+Ejecuta las pruebas:
 
----
-
-# 🛠️ Local development
-
-~~~bash
+```bash
 python -m unittest discover -s tests -v
+```
+
+Simula una ejecución sin publicar avisos:
+
+```bash
 python radar.py --dry-run
-~~~
+```
 
-`--dry-run` muestra qué Collectibles nuevos detectaría, sin publicar en Discord ni modificar el estado persistente. En el primer arranque, una simulación tampoco inicializa el catálogo: así puedes probar sin consumir los avisos que debería emitir una ejecución real.
+`--dry-run` muestra qué coleccionables nuevos detectaría, sin publicar en Discord ni modificar el estado persistente. En un primer arranque, la simulación tampoco inicializa el catálogo: así puedes comprobar el resultado sin consumir los avisos que corresponderían a una ejecución real.
 
-### Automation model
+## Automatización
 
-- scheduled GitHub Actions polling;
-- persistent deduplication;
-- HTTP retry handling including rate limiting and transient 5xx responses;
-- enrichment only when source data is available;
-- initial bootstrap without replaying the whole historical catalog;
-- optional heartbeat/testing workflow support.
+El flujo se ejecuta mediante GitHub Actions e incluye:
 
----
+- consultas programadas a las fuentes configuradas;
+- deduplicación entre ejecuciones;
+- reintentos ante límites de peticiones y errores temporales del servidor;
+- enriquecimiento solo cuando hay datos disponibles;
+- inicialización sin reproducir el histórico completo;
+- soporte para pruebas y comprobaciones de funcionamiento.
 
-# 🔐 Security
+El webhook de Discord debe configurarse como **GitHub Actions Secret**, usando el nombre que espera el workflow del repositorio. No lo incluyas en archivos versionados ni en la salida de depuración.
 
-🇪🇸 No necesita wallet, private key, seed phrase, VPS ni servidor permanente. El webhook de Discord debe guardarse únicamente como **GitHub Actions Secret**.
+## Seguridad y límites de los datos
 
-🇺🇸 No wallet, private key, seed phrase, VPS or always-on server is required. Store the Discord webhook only as a **GitHub Actions Secret**.
+No necesitas una wallet, private key, seed phrase, VPS ni servidor permanente. El proyecto se ejecuta con GitHub Actions.
 
----
+Los avisos reflejan lo que devolvieron las fuentes consultadas en ese momento. Los precios son referencias de mercado, no una tasación ni una garantía de venta. Si una fuente no proporciona un dato, debe mantenerse como desconocido en lugar de inventarlo.
 
-# 📊 Data policy
+Los avisos pueden incluir nombre, rareza, colección, puntuación, coste, oferta, fechas, descripción, metadatos técnicos, referencias ETH/USD/EUR, enlace al mercado y artwork oficial cuando los datos estén disponibles.
 
-El radar refleja lo que devolvieron las fuentes consultadas. Si un dato falta o una fuente falla, no debe tratarse como un hecho confirmado. Los precios son referencias de la consulta, no una tasación ni una garantía de venta.
+## Documentación
 
-Alerts may include name, rarity, collection, score, cost, supply, timestamps, description, technical metadata, ETH/USD/EUR information, market link and official artwork when sources provide them.
+- `BRAND.md` — identidad del proyecto.
+- `scripts/README.md` — scripts auxiliares.
+- `SECURITY.md` — límites y prácticas de seguridad.
+- `CONTRIBUTING.md` — guía de contribución.
 
----
+<div align="center">
 
-# 📚 Documentation
+**Detectar → Enriquecer → Verificar → Avisar**  
+<sub>⚡ xLFr4n · Fuentes públicas · Señal útil</sub>
 
-- `BRAND.md` — project identity
-- `scripts/README.md` — helper scripts
-- `SECURITY.md` — security boundaries
-- `CONTRIBUTING.md` — contribution workflow
+</div>
 
----
+<details>
+<summary><strong>English</strong></summary>
 
-# ⚡ xLFr4n
+## What it does
 
-<div align="center"><strong>Detect → Enrich → Verify → Alert</strong><br><sub>⚡ xLFr4n · Public sources · Useful signal</sub></div>
+Habbo Furni Radar polls the public Habbo Collectibles Shop API, compares `productCode` values against its saved state, and sends a Discord alert when it detects a new item. The initial catalogue is recorded without replaying the full history as notifications.
+
+The Shop API is the primary detection signal. Furnidata, pricing and ETH conversion are used for enrichment when those sources provide data.
+
+## Local checks
+
+Run the test suite:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+Preview newly detected items without sending Discord alerts or changing persistent state:
+
+```bash
+python radar.py --dry-run
+```
+
+The persistent catalogue is stored in `state/known_shop_items.json`. The scheduled workflow handles polling, deduplication, retries and optional enrichment.
+
+## Security and data quality
+
+No wallet, private key, seed phrase, VPS or always-on server is required. Store the Discord webhook only as a GitHub Actions Secret. Alerts represent the information returned by the configured sources at query time; market prices are references, not guaranteed sale values.
+
+See `SECURITY.md` and `CONTRIBUTING.md` before making changes.
+
+</details>
