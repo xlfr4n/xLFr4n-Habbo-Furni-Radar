@@ -662,8 +662,14 @@ def run(state_path: Path, webhook_url: str, dry_run: bool = False) -> int:
             "first_seen_at": detected_at,
         }
 
-    save_state(state_path, known, digest)
-    print(f"Procesados {len(enriched)} nuevos Collectibles. Precios={len(markets)}.")
+    if not dry_run:
+        save_state(state_path, known, digest)
+        print(f"Procesados {len(enriched)} nuevos Collectibles. Precios={len(markets)}.")
+    else:
+        print(
+            f"Dry-run: {len(enriched)} Collectibles nuevos simulados. "
+            "El estado no se ha modificado y podrán notificarse en una ejecución real."
+        )
     return 0
 
 
