@@ -60,6 +60,8 @@ python -m unittest discover -s tests -v
 python radar.py --dry-run
 ~~~
 
+`--dry-run` muestra qué Collectibles nuevos detectaría, sin publicar en Discord ni modificar el estado persistente. En el primer arranque, una simulación tampoco inicializa el catálogo: así puedes probar sin consumir los avisos que debería emitir una ejecución real.
+
 ### Automation model
 
 - scheduled GitHub Actions polling;
