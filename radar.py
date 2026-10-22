@@ -617,7 +617,13 @@ def run(state_path: Path, webhook_url: str, dry_run: bool = False) -> int:
     known = state.get("known", {})
 
     if not known:
-        bootstrap_state(current, state_path, digest)
+        if dry_run:
+            print(
+                f"Dry-run: el catálogo inicial contiene {len(current)} Collectibles. "
+                "No se inicializa ni modifica el estado persistente."
+            )
+        else:
+            bootstrap_state(current, state_path, digest)
         return 0
 
     current_time = now_utc()
@@ -662,8 +668,14 @@ def run(state_path: Path, webhook_url: str, dry_run: bool = False) -> int:
             "first_seen_at": detected_at,
         }
 
-    save_state(state_path, known, digest)
-    print(f"Procesados {len(enriched)} nuevos Collectibles. Precios={len(markets)}.")
+    if not dry_run:
+        save_state(state_path, known, digest)
+        print(f"Procesados {len(enriched)} nuevos Collectibles. Precios={len(markets)}.")
+    else:
+        print(
+            f"Dry-run: {len(enriched)} Collectibles nuevos simulados. "
+            "El estado no se ha modificado y podrán notificarse en una ejecución real."
+        )
     return 0
 
 

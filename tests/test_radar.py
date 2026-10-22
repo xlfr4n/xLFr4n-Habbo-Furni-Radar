@@ -1,4 +1,8 @@
+import json
+import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
 from radar import (
     build_embed,
@@ -7,6 +11,7 @@ from radar import (
     is_non_token_collectible,
     parse_furnidata,
     shop_status,
+    run,
 )
 
 
@@ -80,6 +85,36 @@ class RadarTests(unittest.TestCase):
             shop_status({**SAMPLE_ITEM, "hidden": True}),
             "Oculto",
         )
+
+    def test_dry_run_does_not_bootstrap_empty_state(self):
+        with tempfile.TemporaryDirectory() as directory:
+            state_path = Path(directory) / "missing-state.json"
+            with patch("radar.fetch_shop_items", return_value=([SAMPLE_ITEM], "digest")):
+                self.assertEqual(run(state_path, webhook_url="", dry_run=True), 0)
+            self.assertFalse(state_path.exists())
+
+    def test_dry_run_does_not_consume_new_items(self):
+        with tempfile.TemporaryDirectory() as directory:
+            state_path = Path(directory) / "known.json"
+            original_known = {
+                "already-known": {"name": "Existing item", "release": None}
+            }
+            state_path.write_text(
+                json.dumps({"schema_version": 2, "known": original_known}),
+                encoding="utf-8",
+            )
+
+            with (
+                patch("radar.fetch_shop_items", return_value=([SAMPLE_ITEM], "digest")),
+                patch("radar.enrich_with_furnidata", return_value=([dict(SAMPLE_ITEM, furnidata={})], "")),
+                patch("radar.fetch_shop_prices", return_value={}),
+                patch("radar.fetch_eth_prices", return_value={}),
+            ):
+                self.assertEqual(run(state_path, webhook_url="", dry_run=True), 0)
+
+            saved = json.loads(state_path.read_text(encoding="utf-8"))
+            self.assertEqual(saved["known"], original_known)
+            self.assertNotIn(SAMPLE_ITEM["productCode"], saved["known"])
 
     def test_embed_is_within_discord_limits(self):
         embed = build_embed(
