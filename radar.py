@@ -24,7 +24,7 @@ FURNIDATA_URL = "https://www.habbo.es/gamedata/furnidata_xml/1"
 COINGECKO_URL = "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd,eur"
 DEFAULT_STATE = Path("state/known_shop_items.json")
 DEFAULT_TIMEZONE = "Europe/Madrid"
-USER_AGENT = "habbo-furni-radar/2.0 (+https://github.com/xlfr4n/habbo-furni-radar)"
+USER_AGENT = "habbo-furni-radar/2.0 (+https://github.com/xlfr4n/xLFr4n-Habbo-Furni-Radar)"
 
 IMAGE_BASES = {
     "furniture": "https://nft-tokens.habbo.com/collectibles/furni/images/",
