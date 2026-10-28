@@ -1968,6 +1968,11 @@
       "name": "Sandman Gnome",
       "release": "2026-02-06T11:00:00.000Z"
     },
+    "nft_h26_scarywitch": {
+      "first_seen_at": "2026-10-28T16:49:15.568178Z",
+      "name": "Terrifying Witch",
+      "release": "2026-10-28T09:47:00.000Z"
+    },
     "nft_h26_spellingredients": {
       "first_seen_at": "2026-10-14T15:18:12.698284Z",
       "name": "Spell Ingredients",
@@ -2008,8 +2013,8 @@
       "release": "2024-11-06T10:00:16.485Z"
     }
   },
-  "last_api_sha256": "0d94c3bf86342e93b706ac564f6d36395c5e91e92006ffc90644fc7c78a9f7ce",
-  "last_successful_check": "2026-10-21T11:11:01.839951Z",
+  "last_api_sha256": "ee26e0c750dd4f92d0ef362f73b3faf456875fe011c53cf93c89f8a6bc0f87c3",
+  "last_successful_check": "2026-10-28T16:49:22.478558Z",
   "schema_version": 2,
   "source_url": "https://collectibles.habbo.com/api/shop/items/?walletAddress="
 }
