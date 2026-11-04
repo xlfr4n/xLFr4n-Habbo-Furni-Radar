@@ -72,10 +72,20 @@
       "name": "Gold Habbo 25 Earrings",
       "release": "2025-08-20T09:00:47.188Z"
     },
+    "clothing_nft26_camopaint": {
+      "first_seen_at": "2026-11-04T15:41:45.876971Z",
+      "name": "Camouflage Face Paint",
+      "release": "2026-11-04T10:51:00.000Z"
+    },
     "clothing_nft26_nftwitchcape": {
       "first_seen_at": "2026-10-07T11:55:05.800224Z",
       "name": "Modern Witch's Cape",
       "release": "2026-10-07T09:28:00.000Z"
+    },
+    "clothing_nft26_tacticalvest": {
+      "first_seen_at": "2026-11-04T15:41:45.876971Z",
+      "name": "Tactical Vest",
+      "release": "2026-11-04T10:51:00.000Z"
     },
     "clothing_nftakaiakuma": {
       "name": "Akai Akuma Hair",
@@ -2013,8 +2023,8 @@
       "release": "2024-11-06T10:00:16.485Z"
     }
   },
-  "last_api_sha256": "ee26e0c750dd4f92d0ef362f73b3faf456875fe011c53cf93c89f8a6bc0f87c3",
-  "last_successful_check": "2026-10-28T16:49:22.478558Z",
+  "last_api_sha256": "fdc4bb605e5e615bbd39efd15a371089ce6757a3d186b85cfde765e15f2f66c7",
+  "last_successful_check": "2026-11-04T15:41:51.849413Z",
   "schema_version": 2,
   "source_url": "https://collectibles.habbo.com/api/shop/items/?walletAddress="
 }
