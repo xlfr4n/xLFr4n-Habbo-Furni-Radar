@@ -1840,6 +1840,11 @@
       "name": "Broomstick Rack",
       "release": "2026-10-07T09:28:00.000Z"
     },
+    "nft_h26_campfire": {
+      "first_seen_at": "2026-11-11T16:40:42.830587Z",
+      "name": "Well-Built Campfire",
+      "release": "2026-11-11T09:07:00.000Z"
+    },
     "nft_h26_cardchair": {
       "name": "Card Game Chair",
       "release": "2026-08-12T08:20:02.983Z"
@@ -2023,8 +2028,8 @@
       "release": "2024-11-06T10:00:16.485Z"
     }
   },
-  "last_api_sha256": "fdc4bb605e5e615bbd39efd15a371089ce6757a3d186b85cfde765e15f2f66c7",
-  "last_successful_check": "2026-11-04T15:41:51.849413Z",
+  "last_api_sha256": "f8514790757c3ee7932d6c01ebd4b4465f692b4c3ed3e4a52e98f81bad9368d2",
+  "last_successful_check": "2026-11-11T16:41:03.204802Z",
   "schema_version": 2,
   "source_url": "https://collectibles.habbo.com/api/shop/items/?walletAddress="
 }
