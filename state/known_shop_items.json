@@ -1893,6 +1893,11 @@
       "name": "Retro Polyfon Gamer Chair",
       "release": "2026-01-07T10:00:30.543Z"
     },
+    "nft_h26_emplacement": {
+      "first_seen_at": "2026-11-18T16:06:24.373618Z",
+      "name": "Survivalist Emplacement",
+      "release": "2026-11-18T09:00:00.000Z"
+    },
     "nft_h26_farmtruck": {
       "first_seen_at": "2026-09-30T13:37:37.677320Z",
       "name": "Retro Farm Truck",
@@ -2028,8 +2033,8 @@
       "release": "2024-11-06T10:00:16.485Z"
     }
   },
-  "last_api_sha256": "f8514790757c3ee7932d6c01ebd4b4465f692b4c3ed3e4a52e98f81bad9368d2",
-  "last_successful_check": "2026-11-11T16:41:03.204802Z",
+  "last_api_sha256": "b0e4689edf5637ccd0a4edd2d2d4463a4800047ef068c30ea49aaff15aab4bb3",
+  "last_successful_check": "2026-11-18T16:06:30.268268Z",
   "schema_version": 2,
   "source_url": "https://collectibles.habbo.com/api/shop/items/?walletAddress="
 }
