@@ -2002,9 +2002,19 @@
       "name": "Jungle Sunlounger",
       "release": "2026-06-03T10:00:30.125Z"
     },
+    "nft_h26_survivalgear": {
+      "first_seen_at": "2026-11-25T14:46:48.976215Z",
+      "name": "Survivalist Gear",
+      "release": "2026-11-25T08:57:00.000Z"
+    },
     "nft_h26_treasuremap2": {
       "name": "Jungle Treasure Map B",
       "release": "2026-06-03T10:00:30.125Z"
+    },
+    "nft_h26_treehouseshelter": {
+      "first_seen_at": "2026-11-25T14:46:48.976215Z",
+      "name": "Treehouse Shelter",
+      "release": "2026-11-25T08:57:00.000Z"
     },
     "nft_h26_trippypatch": {
       "name": "Trippy Patch",
@@ -2033,8 +2043,8 @@
       "release": "2024-11-06T10:00:16.485Z"
     }
   },
-  "last_api_sha256": "b0e4689edf5637ccd0a4edd2d2d4463a4800047ef068c30ea49aaff15aab4bb3",
-  "last_successful_check": "2026-11-18T16:06:30.268268Z",
+  "last_api_sha256": "709725c2150e4025c9c42266039c7a2e81020a1d232517ed340842a446b61aea",
+  "last_successful_check": "2026-11-25T14:46:57.288870Z",
   "schema_version": 2,
   "source_url": "https://collectibles.habbo.com/api/shop/items/?walletAddress="
 }
